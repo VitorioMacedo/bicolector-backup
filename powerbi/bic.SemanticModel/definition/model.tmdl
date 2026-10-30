@@ -1,0 +1,29 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Servidor", "Banco", "Medidores", "Calendário", "Leituras 1 min", "Leituras 5 min", "Leituras 15 min", "Leituras 1 h", "Leituras 1 dia", "Agora"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Medidores
+ref table Calendário
+ref table 'Leituras 1 min'
+ref table 'Leituras 5 min'
+ref table 'Leituras 15 min'
+ref table 'Leituras 1 h'
+ref table 'Leituras 1 dia'
+ref table Agora
+ref table Período
+ref table Grandeza
+ref table Resolução
+
+ref cultureInfo pt-BR
+

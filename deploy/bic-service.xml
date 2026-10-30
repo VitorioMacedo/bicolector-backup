@@ -1,0 +1,26 @@
+<!--
+  Serviço do Windows para a aplicação (WinSW, https://github.com/winsw/winsw).
+  1. Baixe WinSW-x64.exe (release do WinSW) e salve nesta pasta com o nome bic-service.exe.
+  2. Ajuste <workingdirectory> para a pasta do projeto e confira que o .env está lá.
+  3. Num PowerShell como administrador, nesta pasta:  .\bic-service.exe install   e depois   .\bic-service.exe start
+  Logs do serviço: deploy\logs\bic-service.out.log (rotacionado a 10 MB). Ver docs/instalacao-windows.md.
+-->
+<service>
+  <id>bic</id>
+  <name>BIC - coletor de energia</name>
+  <description>Coletor Modbus dos medidores PM2230 (API REST, painel web e gravação no SQL Server)</description>
+  <executable>%LOCALAPPDATA%\Programs\uv\uv.exe</executable>
+  <arguments>run --no-dev uvicorn app.main:app --host 0.0.0.0 --port 8000 --no-access-log</arguments>
+  <workingdirectory>C:\bic</workingdirectory>
+  <env name="UV_NO_SYNC" value="1" />
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>8</keepFiles>
+  </log>
+  <logpath>%BASE%\logs</logpath>
+  <onfailure action="restart" delay="10 sec" />
+  <resetfailure>1 hour</resetfailure>
+  <stoptimeout>20 sec</stoptimeout>
+  <startmode>Automatic</startmode>
+  <delayedAutoStart>true</delayedAutoStart>
+</service>

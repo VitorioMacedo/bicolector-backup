@@ -1,0 +1,283 @@
+table 'Leituras 1 h'
+	lineageTag: 4578c97d-8926-5ba7-bf8c-5ea3f0f5a2f6
+
+	column bucket_local
+		dataType: dateTime
+		formatString: dd/MM/yyyy HH:mm
+		lineageTag: dd1b1061-23b0-5f2c-91c8-0743a3f70bdf
+		summarizeBy: none
+		sourceColumn: bucket_local
+
+		annotation SummarizationSetBy = User
+
+	column bucket_utc
+		dataType: dateTime
+		isHidden
+		formatString: dd/MM/yyyy HH:mm
+		lineageTag: 8714e0df-7cea-538b-9096-3994f24631e1
+		summarizeBy: none
+		sourceColumn: bucket_utc
+
+		annotation SummarizationSetBy = User
+
+	column dia_local
+		dataType: dateTime
+		isHidden
+		formatString: dd/MM/yyyy
+		lineageTag: 392fe90e-96f8-5bfc-9754-b8b9e17a5768
+		summarizeBy: none
+		sourceColumn: dia_local
+
+		annotation SummarizationSetBy = User
+
+	column meter_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6870c3b6-2683-52e1-aad9-379e1455f815
+		summarizeBy: none
+		sourceColumn: meter_id
+
+		annotation SummarizationSetBy = User
+
+	column p_avg
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 41ee1a35-b5b9-5ec6-9187-91be5230a8df
+		summarizeBy: none
+		sourceColumn: p_avg
+
+		annotation SummarizationSetBy = User
+
+	column p_min
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 0621acd0-e610-50c4-8d68-cdca44d1f181
+		summarizeBy: none
+		sourceColumn: p_min
+
+		annotation SummarizationSetBy = User
+
+	column p_max
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 60389d35-18c4-5d0e-91be-6548e3963720
+		summarizeBy: none
+		sourceColumn: p_max
+
+		annotation SummarizationSetBy = User
+
+	column q_avg
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 1425eaa7-4f74-511e-ade4-0597d0eea24b
+		summarizeBy: none
+		sourceColumn: q_avg
+
+		annotation SummarizationSetBy = User
+
+	column s_avg
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 0974af41-f4af-588d-93cd-4255ca547556
+		summarizeBy: none
+		sourceColumn: s_avg
+
+		annotation SummarizationSetBy = User
+
+	column i_avg
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 5e1c286c-2c01-594b-8eaf-a8f1bed49cf9
+		summarizeBy: none
+		sourceColumn: i_avg
+
+		annotation SummarizationSetBy = User
+
+	column i_max
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 87e81d9b-2b77-519c-a534-f10d49237fca
+		summarizeBy: none
+		sourceColumn: i_max
+
+		annotation SummarizationSetBy = User
+
+	column vln_avg
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 69bc77c5-331d-5bfe-aedb-2a1ee58a8bc9
+		summarizeBy: none
+		sourceColumn: vln_avg
+
+		annotation SummarizationSetBy = User
+
+	column vln_min
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 7375a7a4-91d7-58e4-a96e-94657a46d835
+		summarizeBy: none
+		sourceColumn: vln_min
+
+		annotation SummarizationSetBy = User
+
+	column vln_max
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: b548e573-dda9-5d41-8330-b851ea295856
+		summarizeBy: none
+		sourceColumn: vln_max
+
+		annotation SummarizationSetBy = User
+
+	column pf_avg
+		dataType: double
+		isHidden
+		formatString: 0.000
+		lineageTag: 47b04bac-e2b6-5d0a-a7bc-adeadfa8456a
+		summarizeBy: none
+		sourceColumn: pf_avg
+
+		annotation SummarizationSetBy = User
+
+	column pf_min
+		dataType: double
+		isHidden
+		formatString: 0.000
+		lineageTag: 29eab2d5-5254-55fb-982f-bab2d089c950
+		summarizeBy: none
+		sourceColumn: pf_min
+
+		annotation SummarizationSetBy = User
+
+	column samples
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a737e844-90c2-5768-a336-8c6d6ba9c53b
+		summarizeBy: none
+		sourceColumn: samples
+
+		annotation SummarizationSetBy = User
+
+	column kwh
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 988c0aa3-b244-5c07-b4fe-3fe5480e7aaf
+		summarizeBy: none
+		sourceColumn: kwh
+
+		annotation SummarizationSetBy = User
+
+	column kwh_acumulado
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 5f3d5d07-7500-589e-b7b6-837997f4ba6b
+		summarizeBy: none
+		sourceColumn: kwh_acumulado
+
+		annotation SummarizationSetBy = User
+
+	column demand_peak
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: dd121cab-dbc6-5e8f-8e85-d43a49841bf7
+		summarizeBy: none
+		sourceColumn: demand_peak
+
+		annotation SummarizationSetBy = User
+
+	column freq_avg
+		dataType: double
+		isHidden
+		formatString: 0.00
+		lineageTag: 7d41cd1f-b665-5d8e-a8d0-68d7e6517894
+		summarizeBy: none
+		sourceColumn: freq_avg
+
+		annotation SummarizationSetBy = User
+
+	column thd_ia
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: eff0582e-5896-508f-b410-f1e9911893bc
+		summarizeBy: none
+		sourceColumn: thd_ia
+
+		annotation SummarizationSetBy = User
+
+	column thd_ib
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 0dd35861-812b-508e-9aa4-2ff62d6909e0
+		summarizeBy: none
+		sourceColumn: thd_ib
+
+		annotation SummarizationSetBy = User
+
+	column thd_ic
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: e3374358-6a43-518d-89fe-122c385b91f8
+		summarizeBy: none
+		sourceColumn: thd_ic
+
+		annotation SummarizationSetBy = User
+
+	column thd_van
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 10dc599a-d9f0-56e4-ae06-39536291a42c
+		summarizeBy: none
+		sourceColumn: thd_van
+
+		annotation SummarizationSetBy = User
+
+	column thd_vbn
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: fa8a84f2-170f-55bb-aeb4-cb63644af91c
+		summarizeBy: none
+		sourceColumn: thd_vbn
+
+		annotation SummarizationSetBy = User
+
+	column thd_vcn
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: d79409bf-4ee1-5133-8569-6bec5887de4c
+		summarizeBy: none
+		sourceColumn: thd_vcn
+
+		annotation SummarizationSetBy = User
+
+	partition 'Leituras 1 h' = m
+		mode: directQuery
+		source =
+				let
+					Fonte = Sql.Database(Servidor, Banco, [CreateNavigationProperties = false]),
+					Dados = Fonte{[Schema = "dbo", Item = "v_pbi_1h"]}[Data]
+				in
+					Dados
+
+	annotation PBI_ResultType = Table
+

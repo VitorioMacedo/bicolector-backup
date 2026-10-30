@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head"><h1>Configurações</h1><span class="muted">valem no próximo ciclo, sem reiniciar o coletor</span></div>
+<form id="settings-form">
+<div class="grid">
+  <div class="card">
+    <h2>Polling</h2>
+    <div class="field"><label for="s-fast">Intervalo do ciclo rápido (s) — corrente, tensão, potência, FP</label>
+      <input id="s-fast" name="fast_interval_s" type="number" step="0.1" min="0.2" value="{{ cfg.fast_interval_s }}">
+      <p class="help">Padrão 1 s. O medidor só atualiza valores 1x por segundo; abaixo disso só repete leituras. O painel avisa se o gateway não alcança o intervalo.</p></div>
+    <div class="field"><label for="s-slow">Intervalo do ciclo lento (s) — energia, demanda, THD</label>
+      <input id="s-slow" name="slow_interval_s" type="number" step="1" min="1" value="{{ cfg.slow_interval_s }}">
+      <p class="help">Padrão 30 s. Lido no tempo que sobra do ciclo rápido.</p></div>
+    <div class="field"><label for="s-off">Falhas seguidas para marcar medidor offline</label>
+      <input id="s-off" name="offline_after_failures" type="number" min="1" value="{{ cfg.offline_after_failures }}">
+      <p class="help">Um medidor offline é tentado de novo com intervalo crescente (5 s a 60 s) para não travar o barramento.</p></div>
+  </div>
+  <div class="card">
+    <h2>Banco de dados</h2>
+    <div class="field"><label for="s-ret">Retenção das leituras brutas de 1 s (dias)</label>
+      <input id="s-ret" name="raw_retention_days" type="number" min="1" value="{{ cfg.raw_retention_days }}">
+      <p class="help">Os agregados por minuto/hora/dia (usados pelo Power BI e pelos gráficos) são mantidos indefinidamente.</p></div>
+    <div class="field"><label for="s-tz">Fuso horário das views do Power BI</label>
+      <input id="s-tz" name="display_timezone" value="{{ cfg.display_timezone }}" placeholder="America/Cuiaba">
+      <p class="help">As leituras são gravadas em UTC; as views <code>v_pbi_*</code> convertem para este fuso (nome IANA, ex.: America/Cuiaba, America/Sao_Paulo).</p></div>
+  </div>
+  <div class="card">
+    <h2>Comandos (reset)</h2>
+    <div class="field"><label for="s-code">Código do comando "reset de energia"</label>
+      <input id="s-code" name="reset_command_code" type="number" min="0" max="65535" value="{{ cfg.reset_command_code }}">
+      <p class="help">Padrão 2020 (FAQ Schneider). Valide na planilha oficial de registradores do PM2xxx e teste num medidor antes de usar em todos.</p></div>
+    <div class="field"><label for="s-pwd">Senha de reset configurada no medidor (0000–9999)</label>
+      <input id="s-pwd" name="reset_password" type="number" min="0" max="9999" value="{{ cfg.reset_password }}"></div>
+    <div class="field"><label for="s-layout">Layout do bloco de comando</label>
+      <select id="s-layout" name="reset_layout">
+        <option value="password_first" {{ 'selected' if cfg.reset_layout == 'password_first' }}>password_first — [senha, comando, 0] a partir de 5249</option>
+        <option value="command_first" {{ 'selected' if cfg.reset_layout == 'command_first' }}>command_first — [comando, 0] a partir de 5250</option>
+      </select>
+      <p class="help">Se a interface sem semáforo recusar, a aplicação tenta automaticamente a interface protegida (semáforo em 5680, bloco em 5000).</p></div>
+  </div>
+</div>
+<div class="row"><button class="btn primary" type="submit">Salvar configurações</button></div>
+</form>
+{% endblock %}
+{% block scripts %}<script type="module" src="/static/settings.js"></script>{% endblock %}

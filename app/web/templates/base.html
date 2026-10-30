@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}BIColector{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <link rel="stylesheet" href="/static/app.css">
+  {% block head %}{% endblock %}
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">
+    {% if has_logo() %}<img src="/static/logo.png" alt="logo">{% else %}<span class="dot" aria-hidden="true"></span>{% endif %}
+    <!-- <span>bic <small>coletor PM2230</small></span> -->
+  </a>
+  <nav>
+    <a href="/" class="{{ 'active' if page == 'dashboard' }}">Painel</a>
+    <a href="/charts" class="{{ 'active' if page == 'charts' }}">Gráficos</a>
+    <a href="/meters" class="{{ 'active' if page == 'meters' }}">Gateways e medidores</a>
+    <a href="/settings" class="{{ 'active' if page == 'settings' }}">Configurações</a>
+    <a href="/commands" class="{{ 'active' if page == 'commands' }}">Comandos</a>
+  </nav>
+  <span class="spacer"></span>
+  <a class="nav-ext" href="/docs" target="_blank" rel="noopener">API ↗</a>
+  <span class="who" title="usuário conectado">{{ request.state.user }}</span>
+  <form class="logout" method="post" action="/logout"><button type="submit" class="nav-ext">sair</button></form>
+</header>
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<div id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<dialog id="confirm-dlg" aria-labelledby="confirm-title">
+  <form method="dialog">
+    <div class="dlg-head"><h2 id="confirm-title" data-title>Confirmar</h2></div>
+    <div class="dlg-body"><p data-text style="margin:0"></p></div>
+    <div class="dlg-foot">
+      <button type="submit" class="btn" value="cancel">Cancelar</button>
+      <button type="submit" class="btn primary" value="ok" data-ok>Confirmar</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="/static/app.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

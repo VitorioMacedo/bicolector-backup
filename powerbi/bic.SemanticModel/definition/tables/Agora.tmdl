@@ -1,0 +1,160 @@
+table Agora
+	lineageTag: 7ef0a17c-5fdd-52fb-82bf-166b2341672f
+
+	measure 'kW total agora' = SUM('Agora'[p_total])
+		formatString: #,0.00
+		lineageTag: 23db0cd3-26e2-581b-8505-98c263421148
+
+	measure 'kWh acumulado total' = SUM('Agora'[kwh_import])
+		formatString: #,0.0
+		lineageTag: 8a8e6b48-35ce-5429-a1ca-a04d9f768379
+
+	measure 'Medidores com leitura' = COUNTROWS(FILTER('Agora', NOT ISBLANK('Agora'[p_total])))
+		formatString: 0
+		lineageTag: 63b67435-6a07-54d5-b16c-69949c8a468d
+
+	column meter_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8d107ac3-0145-5c3c-bca4-65965f798fce
+		summarizeBy: none
+		sourceColumn: meter_id
+
+		annotation SummarizationSetBy = User
+
+	column machine
+		dataType: string
+		lineageTag: 13de951f-f214-5a6a-98bf-213fffb0a2e7
+		summarizeBy: none
+		sourceColumn: machine
+
+		annotation SummarizationSetBy = User
+
+	column gateway
+		dataType: string
+		lineageTag: 110b74f1-0258-5bc3-8377-06638bcc94f7
+		summarizeBy: none
+		sourceColumn: gateway
+
+		annotation SummarizationSetBy = User
+
+	column leitura_local
+		dataType: dateTime
+		formatString: dd/MM HH:mm:ss
+		lineageTag: edd63bde-2909-50bf-b385-9aa76f15fe2b
+		summarizeBy: none
+		sourceColumn: leitura_local
+
+		annotation SummarizationSetBy = User
+
+	column p_total
+		dataType: double
+		formatString: #,0.00
+		lineageTag: de8c1e04-8fce-52b6-9d42-9501b2591713
+		summarizeBy: none
+		sourceColumn: p_total
+
+		annotation SummarizationSetBy = User
+
+	column q_total
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 103bda04-5215-57f9-bc54-006fb0a85c67
+		summarizeBy: none
+		sourceColumn: q_total
+
+		annotation SummarizationSetBy = User
+
+	column s_total
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 2c7c751d-83e8-5dbc-a67c-94b3344e9db0
+		summarizeBy: none
+		sourceColumn: s_total
+
+		annotation SummarizationSetBy = User
+
+	column pf_total
+		dataType: double
+		formatString: 0.000
+		lineageTag: 915f00a1-ab8f-585b-8a8c-83e05101d57d
+		summarizeBy: none
+		sourceColumn: pf_total
+
+		annotation SummarizationSetBy = User
+
+	column i_avg
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 4cee5c81-9eb1-57ee-a185-aac3a524b56a
+		summarizeBy: none
+		sourceColumn: i_avg
+
+		annotation SummarizationSetBy = User
+
+	column vln_avg
+		dataType: double
+		formatString: #,0.0
+		lineageTag: c996e85b-39ce-591a-a97b-7fb4733bd0be
+		summarizeBy: none
+		sourceColumn: vln_avg
+
+		annotation SummarizationSetBy = User
+
+	column vll_avg
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 32519928-6b2e-5a10-9c83-76f67cd2c772
+		summarizeBy: none
+		sourceColumn: vll_avg
+
+		annotation SummarizationSetBy = User
+
+	column freq
+		dataType: double
+		formatString: 0.00
+		lineageTag: 25eab423-3094-50f7-8619-9b8c53f3c2f2
+		summarizeBy: none
+		sourceColumn: freq
+
+		annotation SummarizationSetBy = User
+
+	column kwh_import
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 50441657-0deb-5d38-8028-0356a199926e
+		summarizeBy: none
+		sourceColumn: kwh_import
+
+		annotation SummarizationSetBy = User
+
+	column demand_present
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 249d91a9-2421-5d6b-8029-d556b5add75c
+		summarizeBy: none
+		sourceColumn: demand_present
+
+		annotation SummarizationSetBy = User
+
+	column demand_peak
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 2ac42322-e194-5107-8b37-7448eef3ba72
+		summarizeBy: none
+		sourceColumn: demand_peak
+
+		annotation SummarizationSetBy = User
+
+	partition Agora = m
+		mode: directQuery
+		source =
+				let
+					Fonte = Sql.Database(Servidor, Banco, [CreateNavigationProperties = false]),
+					Dados = Fonte{[Schema = "dbo", Item = "v_pbi_agora"]}[Data]
+				in
+					Dados
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,32 @@
+cultureInfo pt-BR
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "leituras_15_min.bucket_local": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Leituras 15 min",
+			          "ConceptualProperty": "bucket_local"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "15 min": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="/static/vendor/uPlot.min.css">
+<script src="/static/vendor/uPlot.iife.min.js"></script>
+{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Gráficos</h1>
+  <span class="spacer"></span>
+  <div class="filters period" style="margin:0">
+    <label style="margin:0">Período</label>
+    <div class="seg" id="range-seg">
+      {% for r in ranges %}<button type="button" data-range="{{ r }}">{{ r }}</button>{% endfor %}
+    </div>
+    <span class="muted">ou</span>
+    <input type="datetime-local" id="from" aria-label="início">
+    <span class="muted">até</span>
+    <input type="datetime-local" id="to" aria-label="fim">
+    <button type="button" class="btn sm" id="btn-apply">Aplicar</button>
+    <span id="live-state" class="pill neutral" title="nos períodos relativos (15m a 30d) os dois gráficos recarregam sozinhos a cada 10 s; pausa enquanto o mouse está sobre um gráfico">ao vivo</span>
+    <button type="button" class="btn sm" id="btn-refresh" title="recarregar os dois gráficos agora">Atualizar</button>
+  </div>
+</div>
+
+{% if not meters %}
+<div class="card empty-state">Nenhum medidor cadastrado. Vá em <a href="/meters">Gateways e medidores</a>.</div>
+{% endif %}
+
+<div class="card" id="ranking">
+  <div class="card-head">
+    <h2>Consumo por medidor</h2>
+    <span class="muted" id="ranking-sub">kWh no período, do maior para o menor</span>
+    <span class="spacer"></span>
+    <span class="total" id="ranking-total"></span>
+  </div>
+  <div class="gw-tiles" id="gw-tiles"></div>
+  <div class="ranking" id="ranking-chart"></div>
+  <p class="help">Clique numa coluna para destacar o medidor no gráfico abaixo (clique de novo ou Esc para soltar). Clique num gateway para selecionar todos os seus medidores.</p>
+</div>
+
+<div class="card" id="generic">
+  <div class="card-head">
+    <h2>Gráfico por grandeza</h2>
+    <span class="muted" id="chart-info"></span>
+    <span class="spacer"></span>
+    <button type="button" class="btn sm" id="btn-csv" disabled>Baixar CSV</button>
+  </div>
+  <div class="filters">
+    <label for="metric">Grandeza</label>
+    <select id="metric">
+      {% for g in metric_groups %}<optgroup label="{{ g }}">
+        {% for m in metrics if m.group == g %}<option value="{{ m.key }}">{{ m.label }}{% if m.unit %} ({{ m.unit }}){% endif %}</option>{% endfor %}
+      </optgroup>{% endfor %}
+    </select>
+    <label for="bucket">Resolução</label>
+    <select id="bucket">
+      <option value="auto">automática</option>
+      {% for b in buckets %}<option value="{{ b }}">{{ bucket_labels[b] }}</option>{% endfor %}
+    </select>
+    <label>Tipo</label>
+    <div class="seg" id="type-seg">
+      <button type="button" data-type="line">Linhas</button>
+      <button type="button" data-type="area">Área</button>
+      <button type="button" data-type="bars">Barras</button>
+      <button type="button" data-type="step">Degraus</button>
+    </div>
+  </div>
+  <div class="field">
+    <label>Gateways</label>
+    <div class="meter-picker" id="gw-picker"></div>
+  </div>
+  <div class="field">
+    <label>Medidores <span class="muted">(até {{ max_meters }}; a cor é um tom da cor do gateway, tracejado a partir do 7º do mesmo gateway)</span></label>
+    <div class="meter-picker" id="meter-picker"></div>
+  </div>
+  <div class="chart-body" id="generic-chart"></div>
+</div>
+<br>
+<br>
+<script type="application/json" id="chart-meta">{{ meta|tojson }}</script>
+{% endblock %}
+{% block scripts %}
+<script type="module" src="/static/charts.js"></script>{% endblock %}

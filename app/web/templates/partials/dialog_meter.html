@@ -1,0 +1,27 @@
+<dialog id="meter-dlg" aria-labelledby="meter-dlg-title">
+  <form id="meter-form" autocomplete="off">
+    <div class="dlg-head">
+      <h2 id="meter-dlg-title" data-title>Novo medidor</h2>
+      <button type="button" class="btn-x" data-close aria-label="fechar">×</button>
+    </div>
+    <div class="dlg-body">
+      <div class="form-grid">
+        <div class="field full"><label for="m-name">Nome da máquina</label>
+          <input id="m-name" name="name" required maxlength="80" placeholder="ex.: Prensa 1"></div>
+        <div class="field"><label for="m-gw">Gateway</label>
+          <select id="m-gw" name="gateway_id" required>
+            {% for g in gateways %}<option value="{{ g.id }}">{{ g.name }}</option>{% endfor %}
+          </select></div>
+        <div class="field"><label for="m-unit">Unit ID (endereço Modbus, 1–247)</label>
+          <input id="m-unit" name="unit_id" type="number" min="1" max="247" required placeholder="1"></div>
+        <div class="field full">
+          <label class="check"><input type="checkbox" name="enabled" checked> medidor ativo (lido pelo coletor)</label></div>
+      </div>
+      <p class="help">O unit id é configurado no próprio medidor (Menu → Maint → Setup → Comm) e não pode se repetir dentro do mesmo gateway.</p>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" class="btn" data-close>Cancelar</button>
+      <button type="submit" class="btn primary">Salvar</button>
+    </div>
+  </form>
+</dialog>

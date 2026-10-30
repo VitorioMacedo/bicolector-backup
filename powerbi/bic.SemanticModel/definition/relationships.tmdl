@@ -1,0 +1,55 @@
+relationship 29da7f7c-4064-5a3d-8e7b-8d4f4516e03d
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 1 min'.meter_id
+	toColumn: Medidores.meter_id
+
+relationship fc4a8c1c-b92d-540b-a40a-d7458a7abaa2
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 5 min'.meter_id
+	toColumn: Medidores.meter_id
+
+relationship c5fc9aab-ad5f-53d8-ae8e-cbbe903fa0d4
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 15 min'.meter_id
+	toColumn: Medidores.meter_id
+
+relationship 5c8d8a4d-13a8-59a9-9c40-e6ca95755377
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 1 h'.meter_id
+	toColumn: Medidores.meter_id
+
+relationship 4206606c-bfc1-5a7e-a753-0591c4a3760a
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 1 dia'.meter_id
+	toColumn: Medidores.meter_id
+
+relationship 966e0755-eca8-5bb4-9c3e-40bf7623dcfd
+	relyOnReferentialIntegrity
+	fromColumn: Agora.meter_id
+	toColumn: Medidores.meter_id
+
+relationship 53dc6860-af9c-53f4-8c92-0f6ed4c9c0a7
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 1 min'.dia_local
+	toColumn: Calendário.dia
+
+relationship 721dac88-8e09-5ebb-a3fd-d0e593b885af
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 5 min'.dia_local
+	toColumn: Calendário.dia
+
+relationship 05754fb3-425e-5840-b109-66e341c73fdb
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 15 min'.dia_local
+	toColumn: Calendário.dia
+
+relationship 714cc72f-889b-5026-aae6-ae186d260486
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 1 h'.dia_local
+	toColumn: Calendário.dia
+
+relationship 83764c82-453e-5087-a7b1-a94d87375025
+	relyOnReferentialIntegrity
+	fromColumn: 'Leituras 1 dia'.dia_local
+	toColumn: Calendário.dia
+

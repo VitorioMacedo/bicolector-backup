@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "fa85382a16c9a91d7751",
+  "position": {
+    "x": 12,
+    "y": 248,
+    "z": 7,
+    "height": 220,
+    "width": 200,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "kWh no período"
+                }
+              },
+              "queryRef": "Medidores.kWh no período",
+              "nativeQueryRef": "kWh no período"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

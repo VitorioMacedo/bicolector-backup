@@ -1,0 +1,46 @@
+<dialog id="detail-dlg" class="wide" aria-labelledby="detail-title">
+  <div class="dlg-head">
+    <h2 id="detail-title"><span data-d="name">Medidor</span><span class="sub" data-d="sub"></span></h2>
+    <div class="row"><span class="pill" data-d="status"></span><button type="button" class="btn-x" data-close aria-label="fechar">×</button></div>
+  </div>
+  <div class="dlg-body">
+    <p class="notice" data-d="compact-hint" hidden>Este gateway usa o bloco <strong>compact</strong>: só as médias de corrente e tensão são lidas, as fases ficam vazias.</p>
+    <p class="notice bad" data-d="error" hidden></p>
+    <div class="detail-grid">
+      <div class="detail-block"><h3>Correntes (A)</h3><dl>
+        <dt>Fase A</dt><dd data-f="ia"></dd><dt>Fase B</dt><dd data-f="ib"></dd><dt>Fase C</dt><dd data-f="ic"></dd>
+        <dt>Neutro</dt><dd data-f="in_"></dd><dt>Média</dt><dd data-f="i_avg"></dd></dl></div>
+      <div class="detail-block"><h3>Tensão L-N (V)</h3><dl>
+        <dt>A-N</dt><dd data-f="van"></dd><dt>B-N</dt><dd data-f="vbn"></dd><dt>C-N</dt><dd data-f="vcn"></dd><dt>Média</dt><dd data-f="vln_avg"></dd></dl></div>
+      <div class="detail-block"><h3>Tensão L-L (V)</h3><dl>
+        <dt>A-B</dt><dd data-f="vab"></dd><dt>B-C</dt><dd data-f="vbc"></dd><dt>C-A</dt><dd data-f="vca"></dd><dt>Média</dt><dd data-f="vll_avg"></dd></dl></div>
+      <div class="detail-block"><h3>Potência</h3><dl>
+        <dt>P fase A (kW)</dt><dd data-f="p_a" data-d="2"></dd><dt>P fase B (kW)</dt><dd data-f="p_b" data-d="2"></dd><dt>P fase C (kW)</dt><dd data-f="p_c" data-d="2"></dd>
+        <dt>P total (kW)</dt><dd data-f="p_total" data-d="2"></dd><dt>Q total (kvar)</dt><dd data-f="q_total" data-d="2"></dd><dt>S total (kVA)</dt><dd data-f="s_total" data-d="2"></dd>
+        <dt>FP total</dt><dd data-f="pf_total" data-d="3"></dd><dt>FP deslocamento</dt><dd data-f="pf_disp" data-d="3"></dd></dl></div>
+      <div class="detail-block"><h3>Energia e demanda (ciclo lento)</h3><dl>
+        <dt>Frequência (Hz)</dt><dd data-f="freq" data-d="2"></dd>
+        <dt>kWh importado</dt><dd data-f="kwh_import"></dd><dt>kWh exportado</dt><dd data-f="kwh_export"></dd><dt>kWh líquido</dt><dd data-f="kwh_net"></dd>
+        <dt>kvarh</dt><dd data-f="kvarh"></dd><dt>kVAh</dt><dd data-f="kvah"></dd>
+        <dt>Demanda atual (kW)</dt><dd data-f="demand_present" data-d="2"></dd><dt>Demanda anterior (kW)</dt><dd data-f="demand_last" data-d="2"></dd><dt>Demanda pico (kW)</dt><dd data-f="demand_peak" data-d="2"></dd></dl></div>
+      <div class="detail-block"><h3>THD (%)</h3><dl>
+        <dt>I fase A</dt><dd data-f="thd_ia"></dd><dt>I fase B</dt><dd data-f="thd_ib"></dd><dt>I fase C</dt><dd data-f="thd_ic"></dd>
+        <dt>V A-N</dt><dd data-f="thd_van"></dd><dt>V B-N</dt><dd data-f="thd_vbn"></dd><dt>V C-N</dt><dd data-f="thd_vcn"></dd></dl></div>
+    </div>
+    <div class="detail-meta">
+      <span>ciclo rápido: <strong data-d="fast-at">–</strong></span>
+      <span>ciclo lento: <strong data-d="slow-at">–</strong></span>
+      <span>latência: <strong data-d="latency">–</strong></span>
+      <span>última leitura OK: <strong data-d="ok-at">–</strong></span>
+    </div>
+  </div>
+  <div class="dlg-foot">
+    <div class="left">
+      <button type="button" class="btn danger sm" data-cmd="reset-energy">zerar energia (kWh)</button>
+      <button type="button" class="btn sm" data-cmd="reset-demand">zerar demanda</button>
+      <button type="button" class="btn sm" data-cmd="reset-minmax">zerar mín/máx</button>
+    </div>
+    <a class="btn sm" data-d="charts-link" href="/charts">ver gráficos</a>
+    <button type="button" class="btn dark" data-close>fechar</button>
+  </div>
+</dialog>

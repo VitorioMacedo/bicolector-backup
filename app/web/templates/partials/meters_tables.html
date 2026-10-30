@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-head"><h2>Gateways (Link150 / EGX150)</h2><span class="pill neutral plain">{{ gateways|length }}</span></div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Nome</th><th>Host</th><th class="num">Porta</th><th>Bloco rápido</th><th>Status</th><th class="num">Medidores</th><th></th></tr></thead>
+    <tbody>
+    {% for g in gateways %}
+      <tr data-kind="gateway" data-id="{{ g.id }}" data-name="{{ g.name }}" data-host="{{ g.host }}" data-port="{{ g.port }}"
+          data-fast-block="{{ g.fast_block }}" data-enabled="{{ 'true' if g.enabled else 'false' }}" data-color="{{ g.color or '' }}">
+        <td><span class="sw" style="background:{{ g.color or '#d1d5db' }}"></span><strong>{{ g.name }}</strong></td>
+        <td class="mono">{{ g.host }}</td>
+        <td class="num">{{ g.port }}</td>
+        <td>{{ g.fast_block }} <span class="muted">({{ '94' if g.fast_block == 'full' else '76' }} regs)</span></td>
+        <td>{% if g.enabled %}<span class="pill ok">ativo</span>{% else %}<span class="pill neutral">desativado</span>{% endif %}</td>
+        <td class="num">{{ meter_counts.get(g.id, 0) }}</td>
+        <td class="actions">
+          <button type="button" class="btn sm" data-action="edit">editar</button>
+          <button type="button" class="btn sm danger" data-action="delete">remover</button>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="7" class="empty-state">Nenhum gateway cadastrado. Clique em <strong>novo gateway</strong> e informe o IP do Link150.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <p class="help">"compact" lê só as médias de corrente e tensão (menos 15 ms por medidor). Use no gateway com mais medidores se o ciclo passar do intervalo.</p>
+</div>
+
+<div class="card">
+  <div class="card-head"><h2>Medidores</h2><span class="pill neutral plain">{{ meters|length }}</span></div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Máquina</th><th>Gateway</th><th class="num">Unit ID</th><th>Status</th><th>Série</th><th>Firmware</th><th class="num">TC (A)</th><th>Última leitura OK</th><th></th></tr></thead>
+    <tbody>
+    {% for m in meters %}
+      {% set st = statuses.get(m.id) %}
+      <tr data-kind="meter" data-id="{{ m.id }}" data-name="{{ m.name }}" data-gateway-id="{{ m.gateway_id }}" data-unit-id="{{ m.unit_id }}"
+          data-enabled="{{ 'true' if m.enabled else 'false' }}">
+        <td><strong>{{ m.name }}</strong></td>
+        <td class="muted"><span class="sw" style="background:{{ gateway_colors.get(m.gateway_id) or '#d1d5db' }}"></span>{{ gateway_names.get(m.gateway_id, '?') }}</td>
+        <td class="num">{{ m.unit_id }}</td>
+        <td>{% if m.enabled %}<span class="pill ok">ativo</span>{% else %}<span class="pill neutral">desativado</span>{% endif %}</td>
+        <td class="muted mono">{{ m.serial_number or '–' }}</td>
+        <td class="muted">{{ m.firmware or '–' }}</td>
+        <td class="num muted">{{ m.ct_primary or '–' }}</td>
+        <td class="muted">{{ st.last_ok_at.strftime('%d/%m %H:%M:%S') if st and st.last_ok_at else '–' }}</td>
+        <td class="actions">
+          <button type="button" class="btn sm" data-action="identify" title="Lê número de série, firmware e TC do medidor">identificar</button>
+          <button type="button" class="btn sm" data-action="edit">editar</button>
+          <button type="button" class="btn sm danger" data-action="delete">remover</button>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="9" class="empty-state">Nenhum medidor cadastrado. Clique em <strong>novo medidor</strong>, escolha o gateway e informe o unit id.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <p class="help">O unit id é o endereço Modbus configurado no medidor (Menu → Maint → Setup → Comm). Mudanças valem no próximo ciclo, sem reiniciar.</p>
+</div>

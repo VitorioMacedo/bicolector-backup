@@ -1,0 +1,40 @@
+table Calendário
+	lineageTag: 7551c358-6e80-561f-bbcd-85f16820298a
+
+	column dia
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 23bcbab3-9ccb-5be5-ac6a-65330ecc4c9d
+		summarizeBy: none
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = User
+
+	column dia_semana
+		dataType: int64
+		formatString: 0
+		lineageTag: 08ec83d2-4f23-5ad7-9fa1-90e6614b2c28
+		summarizeBy: none
+		sourceColumn: dia_semana
+
+		annotation SummarizationSetBy = User
+
+	column mes
+		dataType: string
+		lineageTag: 2043a055-c180-5850-a913-0011c228b433
+		summarizeBy: none
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = User
+
+	partition Calendário = m
+		mode: directQuery
+		source =
+				let
+					Fonte = Sql.Database(Servidor, Banco, [CreateNavigationProperties = false]),
+					Dados = Fonte{[Schema = "dbo", Item = "v_pbi_calendario"]}[Data]
+				in
+					Dados
+
+	annotation PBI_ResultType = Table
+

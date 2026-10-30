@@ -1,0 +1,227 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0ddf2344e6f78f17378f",
+  "position": {
+    "x": 12,
+    "y": 158,
+    "z": 4,
+    "height": 550,
+    "width": 1256,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "machine"
+                }
+              },
+              "queryRef": "Agora.machine",
+              "nativeQueryRef": "machine"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "gateway"
+                }
+              },
+              "queryRef": "Agora.gateway",
+              "nativeQueryRef": "gateway"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "leitura_local"
+                }
+              },
+              "queryRef": "Agora.leitura_local",
+              "nativeQueryRef": "leitura_local"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "p_total"
+                }
+              },
+              "queryRef": "Agora.p_total",
+              "nativeQueryRef": "p_total"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "i_avg"
+                }
+              },
+              "queryRef": "Agora.i_avg",
+              "nativeQueryRef": "i_avg"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "vln_avg"
+                }
+              },
+              "queryRef": "Agora.vln_avg",
+              "nativeQueryRef": "vln_avg"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "vll_avg"
+                }
+              },
+              "queryRef": "Agora.vll_avg",
+              "nativeQueryRef": "vll_avg"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "pf_total"
+                }
+              },
+              "queryRef": "Agora.pf_total",
+              "nativeQueryRef": "pf_total"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "freq"
+                }
+              },
+              "queryRef": "Agora.freq",
+              "nativeQueryRef": "freq"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "kwh_import"
+                }
+              },
+              "queryRef": "Agora.kwh_import",
+              "nativeQueryRef": "kwh_import"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "demand_present"
+                }
+              },
+              "queryRef": "Agora.demand_present",
+              "nativeQueryRef": "demand_present"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "demand_peak"
+                }
+              },
+              "queryRef": "Agora.demand_peak",
+              "nativeQueryRef": "demand_peak"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Última leitura de cada máquina'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

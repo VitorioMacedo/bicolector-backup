@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head">
+  <h1>Gateways e medidores</h1>
+  <span class="spacer"></span>
+  <button type="button" class="btn" id="btn-new-meter">+ Novo medidor</button>
+  <button type="button" class="btn primary" id="btn-new-gateway">+ Novo gateway</button>
+</div>
+
+<div id="meters-tables">
+  {% include "partials/meters_tables.html" %}
+</div>
+
+{% include "partials/dialog_gateway.html" %}
+{% include "partials/dialog_meter.html" %}
+{% endblock %}
+{% block scripts %}<script type="module" src="/static/meters.js"></script>{% endblock %}

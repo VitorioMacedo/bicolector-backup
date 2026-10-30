@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "551b50903c00aa573ab0",
+  "position": {
+    "x": 636,
+    "y": 248,
+    "z": 9,
+    "height": 220,
+    "width": 632,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "gateway"
+                }
+              },
+              "queryRef": "Medidores.gateway",
+              "nativeQueryRef": "gateway"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "kWh no período"
+                }
+              },
+              "queryRef": "Medidores.kWh no período",
+              "nativeQueryRef": "kWh no período"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "Nº medidores"
+                }
+              },
+              "queryRef": "Medidores.Nº medidores",
+              "nativeQueryRef": "Nº medidores"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "% do total"
+                }
+              },
+              "queryRef": "Medidores.% do total",
+              "nativeQueryRef": "% do total"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidores"
+                  }
+                },
+                "Property": "kWh no período"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gateways'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'kWh no período, medidores ativos e participação no total'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

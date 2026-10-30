@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Entrar · bic</title>
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body class="login-page">
+<main class="login-card" aria-labelledby="login-title">
+  <div class="login-head">
+    {% if has_logo() %}<img src="/static/logo.png" alt="BIC">{% else %}<span class="dot" aria-hidden="true"></span><span class="login-brand">bic</span>{% endif %}
+    <small>BIColector</small>
+  </div>
+  <form class="login-body" method="post" action="/login" autocomplete="on" novalidate>
+    <h1 id="login-title">Entrar no painel</h1>
+    {% if error %}<div class="notice bad" role="alert">{{ error }}</div>{% endif %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <div class="field">
+      <label for="username">Usuário</label>
+      <input id="username" name="username" type="text" value="{{ username }}" autocomplete="username" autocapitalize="none" spellcheck="false" required {% if not username %}autofocus{% endif %}>
+    </div>
+    <div class="field">
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required {% if username %}autofocus{% endif %}>
+    </div>
+    <div class="login-row">
+      <label class="check"><input type="checkbox" name="remember" value="1"> Manter conectado</label>
+    </div>
+    <button type="submit" class="btn primary login-submit">Entrar</button>
+  </form>
+  <div class="login-foot">
+    <span>BIColector</span>
+    <a class="nav-ext" href="/docs" target="_blank" rel="noopener">API ↗</a>
+  </div>
+</main>
+</body>
+</html>

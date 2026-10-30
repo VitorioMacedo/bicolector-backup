@@ -1,0 +1,10 @@
+expression Servidor = "localhost" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: e7483570-6d62-5eb6-bbb7-608102fc4c18
+
+	annotation PBI_ResultType = Text
+
+expression Banco = "bic" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 311764b3-2cd5-5c01-b430-f0cbfefdd48e
+
+	annotation PBI_ResultType = Text
+

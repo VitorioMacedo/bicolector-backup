@@ -1,0 +1,243 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "219681277e383da9f04b",
+  "position": {
+    "x": 12,
+    "y": 682,
+    "z": 11,
+    "height": 206,
+    "width": 1256,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Leituras 5 min"
+                    }
+                  },
+                  "Property": "bucket_local"
+                }
+              },
+              "queryRef": "Leituras 5 min.bucket_local",
+              "nativeQueryRef": "5 min",
+              "active": true,
+              "displayName": "5 min"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resolução"
+                    }
+                  },
+                  "Property": "Resolução"
+                }
+              },
+              "index": 0,
+              "length": 1
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "machine"
+                }
+              },
+              "queryRef": "Medidores.machine",
+              "nativeQueryRef": "machine"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidores"
+                    }
+                  },
+                  "Property": "Consumo de energia (kWh)"
+                }
+              },
+              "queryRef": "Medidores.Consumo de energia (kWh)",
+              "nativeQueryRef": "Consumo de energia (kWh)",
+              "displayName": "Consumo de energia (kWh)"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Grandeza"
+                    }
+                  },
+                  "Property": "Grandeza"
+                }
+              },
+              "index": 0,
+              "length": 1
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Leituras 5 min"
+                  }
+                },
+                "Property": "bucket_local"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelDensity": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gráfico por grandeza'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'uma linha por medidor, só os 8 maiores consumidores do período entre os selecionados · resoluções disponíveis: Consumo de energia (kWh): 5 min, 1 h, 1 dia · Potência reativa (kvar): 1 min, 5 min, 15 min, 1 h · Potência aparente (kVA): 1 min, 5 min, 15 min, 1 h · Tensão L-L média (V): 1 min, 5 min · Demanda de pico (kW): 1 h, 1 dia · Frequência (Hz): 1 h · Energia ativa acumulada (kWh): 5 min, 1 h, 1 dia'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2d21e43e74c973435b3a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidores"
+              }
+            },
+            "Property": "machine"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "06095c7a06273005b2db",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Leituras 5 min"
+              }
+            },
+            "Property": "bucket_local"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

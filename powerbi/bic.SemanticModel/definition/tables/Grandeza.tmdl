@@ -1,0 +1,55 @@
+table Grandeza
+	lineageTag: af6c80fd-50ac-5449-87a4-e9b939334811
+
+	column Grandeza
+		lineageTag: 4b003e7d-87a6-5e3b-b267-9a75b3ef1e46
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Grandeza ordem'
+
+		relatedColumnDetails
+			groupByColumn: 'Grandeza campo'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grandeza campo'
+		isHidden
+		lineageTag: cda87dc1-954b-58ea-814f-e4a04bf8de3a
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Grandeza ordem'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grandeza ordem'
+		isHidden
+		formatString: 0
+		lineageTag: 57250d1e-d2c8-509b-b82a-cc3f109bfe07
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Grandeza = calculated
+		mode: import
+		source =
+				{
+					("Consumo de energia (kWh)", NAMEOF('Medidores'[Consumo de energia (kWh)]), 0),
+					("Potência ativa (kW)", NAMEOF('Medidores'[Potência ativa (kW)]), 1),
+					("Potência reativa (kvar)", NAMEOF('Medidores'[Potência reativa (kvar)]), 2),
+					("Potência aparente (kVA)", NAMEOF('Medidores'[Potência aparente (kVA)]), 3),
+					("Fator de potência", NAMEOF('Medidores'[Fator de potência]), 4),
+					("Corrente média (A)", NAMEOF('Medidores'[Corrente média (A)]), 5),
+					("Tensão L-N média (V)", NAMEOF('Medidores'[Tensão L-N média (V)]), 6),
+					("Tensão L-L média (V)", NAMEOF('Medidores'[Tensão L-L média (V)]), 7),
+					("Demanda de pico (kW)", NAMEOF('Medidores'[Demanda de pico (kW)]), 8),
+					("Frequência (Hz)", NAMEOF('Medidores'[Frequência (Hz)]), 9),
+					("Energia ativa acumulada (kWh)", NAMEOF('Medidores'[Energia ativa acumulada (kWh)]), 10)
+				}
+

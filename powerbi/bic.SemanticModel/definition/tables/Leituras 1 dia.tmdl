@@ -1,0 +1,193 @@
+table 'Leituras 1 dia'
+	lineageTag: 79d8718c-8ab8-5bc7-809b-29da56dd9e54
+
+	column bucket_local
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 572a7b24-7d16-5101-827d-0d731127fc19
+		summarizeBy: none
+		sourceColumn: bucket_local
+
+		annotation SummarizationSetBy = User
+
+	column bucket_utc
+		dataType: dateTime
+		isHidden
+		formatString: dd/MM/yyyy HH:mm
+		lineageTag: 062b40cd-b440-563d-bf62-81a3408399e7
+		summarizeBy: none
+		sourceColumn: bucket_utc
+
+		annotation SummarizationSetBy = User
+
+	column dia_local
+		dataType: dateTime
+		isHidden
+		formatString: dd/MM/yyyy
+		lineageTag: 457920cd-7365-501d-b301-cf3c94ddae1e
+		summarizeBy: none
+		sourceColumn: dia_local
+
+		annotation SummarizationSetBy = User
+
+	column meter_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: efc2ca86-efef-5a07-8479-38f10e3ec2ab
+		summarizeBy: none
+		sourceColumn: meter_id
+
+		annotation SummarizationSetBy = User
+
+	column p_avg
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 40edf8c0-862b-56bf-9d8f-0dadb0d21e3d
+		summarizeBy: none
+		sourceColumn: p_avg
+
+		annotation SummarizationSetBy = User
+
+	column p_min
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 4299983d-c969-5c35-97fb-010aad1edcae
+		summarizeBy: none
+		sourceColumn: p_min
+
+		annotation SummarizationSetBy = User
+
+	column p_max
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 6288a595-3986-5e98-a833-ce9cd02aed05
+		summarizeBy: none
+		sourceColumn: p_max
+
+		annotation SummarizationSetBy = User
+
+	column i_avg
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 6a99064d-6e83-5e48-87e3-81a92aec971c
+		summarizeBy: none
+		sourceColumn: i_avg
+
+		annotation SummarizationSetBy = User
+
+	column i_max
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: b9bfb5bd-af5b-58dd-8dbb-2e88173f6fdf
+		summarizeBy: none
+		sourceColumn: i_max
+
+		annotation SummarizationSetBy = User
+
+	column vln_avg
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 1739a424-9502-5110-8f27-2d97e3b15e8a
+		summarizeBy: none
+		sourceColumn: vln_avg
+
+		annotation SummarizationSetBy = User
+
+	column vln_min
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: 86a5a555-f4eb-5dfd-a40e-9f30bc9bf50a
+		summarizeBy: none
+		sourceColumn: vln_min
+
+		annotation SummarizationSetBy = User
+
+	column vln_max
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: da385865-2974-5a46-967d-f47609166939
+		summarizeBy: none
+		sourceColumn: vln_max
+
+		annotation SummarizationSetBy = User
+
+	column pf_avg
+		dataType: double
+		isHidden
+		formatString: 0.000
+		lineageTag: a7495143-5f63-5a34-a288-766a449ab1ec
+		summarizeBy: none
+		sourceColumn: pf_avg
+
+		annotation SummarizationSetBy = User
+
+	column pf_min
+		dataType: double
+		isHidden
+		formatString: 0.000
+		lineageTag: b382517a-7fd6-529f-a5f9-8592c4afe8f4
+		summarizeBy: none
+		sourceColumn: pf_min
+
+		annotation SummarizationSetBy = User
+
+	column samples
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 82a17100-3f3e-5733-97aa-620c9eb8d6f6
+		summarizeBy: none
+		sourceColumn: samples
+
+		annotation SummarizationSetBy = User
+
+	column kwh
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 56529809-a556-5401-b2cc-90b68ce6ef5c
+		summarizeBy: none
+		sourceColumn: kwh
+
+		annotation SummarizationSetBy = User
+
+	column kwh_acumulado
+		dataType: double
+		isHidden
+		formatString: #,0.0
+		lineageTag: c7edfcd7-7d2d-5de1-98ea-8cf832e02981
+		summarizeBy: none
+		sourceColumn: kwh_acumulado
+
+		annotation SummarizationSetBy = User
+
+	column demand_peak
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: caa6d92f-1768-5188-89be-885bcb9e3818
+		summarizeBy: none
+		sourceColumn: demand_peak
+
+		annotation SummarizationSetBy = User
+
+	partition 'Leituras 1 dia' = m
+		mode: directQuery
+		source =
+				let
+					Fonte = Sql.Database(Servidor, Banco, [CreateNavigationProperties = false]),
+					Dados = Fonte{[Schema = "dbo", Item = "v_pbi_1d"]}[Data]
+				in
+					Dados
+
+	annotation PBI_ResultType = Table
+

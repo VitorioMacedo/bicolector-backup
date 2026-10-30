@@ -1,0 +1,67 @@
+# Ambiente de desenvolvimento. Em produção a aplicação roda como serviço do Windows contra o SQL Server do
+# cliente (docs/instalacao-windows.md); este compose só reproduz isso localmente.
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:-w7x=K5aCK(H8}
+      MSSQL_PID: Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - bic-mssql:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -b -Q 'SELECT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  # cria o banco "bic" e o login da aplicação (sql/mssql_create_db.sql); roda uma vez a cada "up"
+  db-init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./sql/mssql_create_db.sql:/init.sql:ro
+    entrypoint: ["/opt/mssql-tools18/bin/sqlcmd", "-S", "db", "-U", "sa", "-P", "${MSSQL_SA_PASSWORD:-BicDev2026sa}", "-C", "-b", "-i", "/init.sql"]
+
+  app:
+    build: .
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: mssql+aioodbc://bic:BicDev2026x@db:1433/bic?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:-}
+      API_KEY: ${API_KEY:-dev-key}
+      SECRET_KEY: ${SECRET_KEY:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      POLLER_ENABLED: ${POLLER_ENABLED:-true}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  # Simuladores dos 3 gateways reais (10 / 8 / 2 medidores). Suba com: docker compose --profile sim up
+  sim-gw1:
+    build: .
+    profiles: ["sim"]
+    command: ["uv", "run", "--no-dev", "python", "-m", "tests.sim_server", "--port", "5020", "--units", "1-10", "--latency-ms", "25"]
+    ports: ["5020:5020"]
+  sim-gw2:
+    build: .
+    profiles: ["sim"]
+    command: ["uv", "run", "--no-dev", "python", "-m", "tests.sim_server", "--port", "5021", "--units", "1-8", "--latency-ms", "25"]
+    ports: ["5021:5021"]
+  sim-gw3:
+    build: .
+    profiles: ["sim"]
+    command: ["uv", "run", "--no-dev", "python", "-m", "tests.sim_server", "--port", "5022", "--units", "1-2", "--latency-ms", "25", "--offline", "2"]
+    ports: ["5022:5022"]
+
+volumes:
+  bic-mssql:

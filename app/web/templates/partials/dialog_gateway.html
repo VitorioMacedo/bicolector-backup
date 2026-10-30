@@ -1,0 +1,38 @@
+<dialog id="gateway-dlg" aria-labelledby="gateway-dlg-title">
+  <form id="gateway-form" autocomplete="off">
+    <div class="dlg-head">
+      <h2 id="gateway-dlg-title" data-title>Novo gateway</h2>
+      <button type="button" class="btn-x" data-close aria-label="fechar">×</button>
+    </div>
+    <div class="dlg-body">
+      <div class="form-grid">
+        <div class="field full"><label for="g-name">Nome</label>
+          <input id="g-name" name="name" required maxlength="80" placeholder="ex.: GW1 - linha A"></div>
+        <div class="field"><label for="g-host">Host (IP do Link150)</label>
+          <input id="g-host" name="host" required maxlength="120" placeholder="192.168.0.10"></div>
+        <div class="field"><label for="g-port">Porta Modbus TCP</label>
+          <input id="g-port" name="port" type="number" value="502" min="1" max="65535" required></div>
+        <div class="field"><label for="g-block">Bloco rápido</label>
+          <select id="g-block" name="fast_block">
+            <option value="full">full — 94 registradores</option>
+            <option value="compact">compact — 76 registradores</option>
+          </select></div>
+        <div class="field"><label>&nbsp;</label>
+          <label class="check"><input type="checkbox" name="enabled" checked> gateway ativo (lido pelo coletor)</label></div>
+        <div class="field full"><label for="g-color">Cor nos gráficos</label>
+          <div class="color-row">
+            <input id="g-color" name="color" type="color" value="#2a78d6" aria-label="cor do gateway">
+            <div class="swatches" role="group" aria-label="cores sugeridas">
+              {% for c in gateway_palette %}<button type="button" class="swatch" data-swatch="{{ c }}" style="background:{{ c }}" title="{{ c }}"></button>{% endfor %}
+            </div>
+          </div>
+          <p class="help">Os medidores deste gateway aparecem nesta cor na página de gráficos.</p></div>
+      </div>
+      <p class="help">"compact" lê só as médias de corrente e tensão e poupa ~15 ms por medidor. Use no gateway mais carregado se o ciclo estourar o intervalo.</p>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" class="btn" data-close>Cancelar</button>
+      <button type="submit" class="btn primary">Salvar</button>
+    </div>
+  </form>
+</dialog>

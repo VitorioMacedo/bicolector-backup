@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0c82c01504c9b60f6507",
+  "position": {
+    "x": 636,
+    "y": 56,
+    "z": 3,
+    "height": 90,
+    "width": 300,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "Medidores com leitura"
+                }
+              },
+              "queryRef": "Agora.Medidores com leitura",
+              "nativeQueryRef": "Medidores com leitura"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

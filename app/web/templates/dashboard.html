@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head">
+  <h1>Painel</h1>
+  <span class="muted" id="updated-at"></span>
+  <span class="spacer"></span>
+  <span id="poll-state" class="pill neutral">conectando…</span>
+</div>
+
+<div class="kpis" id="kpis"></div>
+<div class="grid" id="gateways"></div>
+
+<div class="card">
+  <div class="filters">
+    <h2>Medidores</h2>
+    <input id="f-q" type="search" placeholder="buscar máquina…" aria-label="buscar máquina">
+    <select id="f-gw" aria-label="filtrar por gateway"><option value="">todos os gateways</option></select>
+    <select id="f-status" aria-label="filtrar por status">
+      <option value="">todos os status</option>
+      <option value="online">online</option>
+      <option value="offline">offline</option>
+      <option value="waiting">aguardando</option>
+    </select>
+    <span class="muted" id="f-count"></span>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr>
+      <th>Máquina</th><th>Gateway</th><th class="num">Unit</th><th>Status</th>
+      <th class="num">kW</th><th class="num">I méd (A)</th><th class="num">V L-N (V)</th><th class="num">FP</th><th class="num">kWh</th>
+      <th class="num">Lat. ms</th><th>Última leitura</th><th>Erro</th><th></th>
+    </tr></thead>
+    <tbody id="meters-body"></tbody>
+  </table>
+  </div>
+  <p class="help" id="writer-line"></p>
+</div>
+
+{% include "partials/dialog_meter_detail.html" %}
+{% endblock %}
+{% block scripts %}<script type="module" src="/static/dashboard.js"></script>{% endblock %}

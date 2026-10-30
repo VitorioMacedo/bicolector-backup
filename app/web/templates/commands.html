@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head"><h1>Histórico de comandos</h1><span class="muted">últimos {{ entries|length }} comandos enviados aos medidores</span></div>
+<div class="card">
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Quando</th><th>Máquina</th><th>Comando</th><th>Por</th><th>Resultado</th><th>Detalhe</th></tr></thead>
+    <tbody>
+    {% for e in entries %}
+      <tr>
+        <td class="muted">{{ e.ts.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+        <td><strong>{{ meters[e.meter_id].name if e.meter_id in meters else '(removido)' }}</strong></td>
+        <td class="mono">{{ e.command }}</td>
+        <td>{{ e.requested_by }}</td>
+        <td>{% if e.success %}<span class="pill ok">ok</span>{% else %}<span class="pill bad">falhou</span>{% endif %}</td>
+        <td class="muted" style="white-space:normal">{{ e.detail }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6" class="empty-state">Nenhum comando enviado ainda. Os resets são disparados pelo detalhe do medidor, no painel.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

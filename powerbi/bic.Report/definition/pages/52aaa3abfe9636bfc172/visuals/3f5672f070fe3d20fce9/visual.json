@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "3f5672f070fe3d20fce9",
+  "position": {
+    "x": 12,
+    "y": 56,
+    "z": 1,
+    "height": 90,
+    "width": 300,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Agora"
+                    }
+                  },
+                  "Property": "kW total agora"
+                }
+              },
+              "queryRef": "Agora.kW total agora",
+              "nativeQueryRef": "kW total agora"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
